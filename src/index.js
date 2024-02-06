@@ -9,3 +9,11 @@ app.listen(3000, (req, res) => {
 app.get('/', (req, res) => {
     res.send('Hello World');
 })
+
+app.get('/',(req, res)) => {
+    res.send('<h1>This is about page');
+}
+
+app.get('/server', (req, res) => {
+    
+})
