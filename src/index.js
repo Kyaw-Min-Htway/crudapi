@@ -1,19 +1,19 @@
+require('./db/mongoose');
 const express = require('express');
+const Blog = require('./models/blog');
 
 const app = express();
+app.use(express.json());
 
-app.listen(3000, (req, res) => {
-    console.log('App is running at the port 3000');
+app.post('/blogs', (req, res) => {
+    const blog = new Blog(req.body);
+    blog.save().then((blog) => {
+        res.status(201).send(blog);
+    }).catch((error) => {
+        res.status(400).send(error);
+    })
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-})
-
-app.get('/',(req, res)) => {
-    res.send('<h1>This is about page');
-}
-
-app.get('/server', (req, res) => {
-    
+app.listen(3000, (req,res)=> {
+    console.log('app is running at the port 3000');
 })
